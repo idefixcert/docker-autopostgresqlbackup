@@ -40,6 +40,7 @@ EOF
 else
     echo "Using cron.daily schedule..."
 fi
+crontab /etc/crontab
 
 # Create the file
 echo "Creating the password file..."

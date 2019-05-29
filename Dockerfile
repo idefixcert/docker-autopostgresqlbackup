@@ -10,12 +10,12 @@ ENV CRON_LOG_LEVEL=8
 RUN apk --update add --no-cache bash bzip2 gzip postgresql-client tzdata
 
 # Copy files to the image
-ADD autopostgresqlbackup.conf /etc/default/autopostgresqlbackup
-ADD autopostgresqlbackup /usr/sbin/autopostgresqlbackup
+COPY autopostgresqlbackup.conf /etc/default/autopostgresqlbackup
+COPY autopostgresqlbackup /usr/sbin/autopostgresqlbackup
 RUN chmod 755 /usr/sbin/autopostgresqlbackup
 
 # Configure entrypoint
-ADD docker-entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 # Volumes declaration

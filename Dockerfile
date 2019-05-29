@@ -7,7 +7,7 @@ LABEL maintainer="Charles Lu <github.com/charleszlu>"
 ENV CRON_LOG_LEVEL=8
 
 # Packages installation
-RUN apk --update add --no-cache bash bzip2 gzip postgresql-client
+RUN apk --update add --no-cache bash bzip2 gzip postgresql-client tzdata
 
 # Copy files to the image
 ADD autopostgresqlbackup.conf /etc/default/autopostgresqlbackup

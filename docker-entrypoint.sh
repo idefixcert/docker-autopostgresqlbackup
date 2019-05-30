@@ -37,10 +37,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # m h dom mon dow user command
 ${CRON_SCHEDULE} /usr/sbin/autopostgresqlbackup    
 EOF
+    crontab /etc/crontab
 else
     echo "Using cron.daily schedule..."
+    echo -e "#!/bin/bash\n/usr/sbin/autopostgresqlbackup" > /etc/periodic/daily/backup.sh
+    chmod +x /etc/periodic/daily/backup.sh
 fi
-crontab /etc/crontab
 
 # Create the file
 echo "Creating the password file..."
@@ -53,4 +55,4 @@ chmod 0600 ${HOME}/.pgpass
 
 # Execute cron with parameters (autopostgresql script is under /etc/cron.daily)
 echo "Execute cron service..."
-exec cron -f -l ${CRON_LOG_LEVEL:-8}
+exec crond -f -l ${CRON_LOG_LEVEL:-8}

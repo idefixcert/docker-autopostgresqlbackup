@@ -1,8 +1,5 @@
 # Docker AutoPostgreSQLBackup
-
 > AutoPostgreSQLBackup in a docker container
-
-[![](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ppadial&repository=autopostgresqlbackup)](https://hub.docker.com/r/ppadial/autopostgresqlbackup/builds/)
 
 This docker container uses the autopostgresqlbackup package from ubuntu repos with a minimal modification to make it able to use variables from environment variables, making the configuration through docker model possible. The original source code with modifications is in this repo, also the license GPLv2 has been respected and this repo is under GPLv2.
 
@@ -11,7 +8,7 @@ This container follow the [dockerfile good practices](https://docs.docker.com/en
 ## Installation
 
 ```bash
-docker pull ppadial/autopostgresqlbackup
+docker pull rogersik/autopostgresqlbackup
 ```
 
 ## Configuration
@@ -57,7 +54,7 @@ and read the options [autopostgresqlbackup](autopostgresqlbackup.conf)
 ## Usage
 
 ```bash
-docker run --name autopostgresqlbackup -v /my/backup/dir:/backups -e DBHOST=mypgbackup -e PASSWORD=mycomplexpassword -v /etc/localtime:/etc/localtime:ro ppadial/autopostgresqlbackup:latest
+docker run --name autopostgresqlbackup -v /my/backup/dir:/backups -e DBHOST=mypgbackup -e PASSWORD=mycomplexpassword -v /etc/localtime:/etc/localtime:ro rogersik/autopostgresqlbackup:latest
 ```
 
 ### With docker-compose
@@ -67,7 +64,7 @@ version: '3.5'
 
 services:
   autopgbackup:
-    image: ppadial/autopostgresqlbackup:latest
+    image: rogersik/autopostgresqlbackup:latest
     container_name: autopgbackup
     environment:
       - DBHOST = mypgserver
@@ -93,11 +90,12 @@ Distributed under the GPLv2 license. See [LICENSE](LICENSE) for more information
 
 ## Contributing
 
-1. Fork it (<https://github.com/ppadial/docker-autopostgresqlbackup/fork>)
+1. Fork it (<https://github.com/rogersik/docker-autopostgresqlbackup/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
-<!-- Markdown link & img dfn's -->
-[wiki]: https://github.com/ppadial/docker-autopostgresqlbackup/wiki
+## Changes since fork from charleszlu/docker-autopostgresqlbackup
+* continous builds (with github actions) for current docker images
+* removed+replaced broken links in README.md
